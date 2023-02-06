@@ -1,6 +1,6 @@
 // var _ = require('lodash');
 
-import Player from '@vimeo/player';
+import Vimeo from '@vimeo/player';
 
 const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
@@ -10,5 +10,5 @@ player.on('play', function () {
 });
 
 player.getVideoTitle().then(function (title) {
-  console.log('title:', title);
+  console.log('BiggiSmoll:', title);
 });
