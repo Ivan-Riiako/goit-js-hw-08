@@ -23,7 +23,6 @@ document.addEventListener('input', _.throttle(() =>{
   obj.email = refs.email.value;
   obj.message = refs.message.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(obj));
-  console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
 }, 500));
 
 // function onChangeInput() {
