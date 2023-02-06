@@ -5,6 +5,12 @@ const { times } = require("lodash");
 
 const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
+
+if (!localStorage.getItem('videoplayer-current-time')) {
+  localStorage.setItem('videoplayer-current-time', JSON.stringify(0));
+  console.log('create Item');
+}
+
 document.addEventListener(
   'click',
   _.throttle(() => {
@@ -18,10 +24,7 @@ document.addEventListener(
   }, 1000)
 );
 
-    if (!localStorage.getItem('videoplayer-current-time')) {
-      localStorage.setItem('videoplayer-current-time', JSON.stringify(0));
-      console.log('create Item');
-    }
+    
     let currentTime = JSON.parse(
       localStorage.getItem('videoplayer-current-time')
     );
