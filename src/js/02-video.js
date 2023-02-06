@@ -1,34 +1,19 @@
 var _ = require('lodash');
 
-const { times } = require("lodash");
-
+// import Player from '@vimeo/player';
 
 const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
 
 if (!localStorage.getItem('videoplayer-current-time')) {
   localStorage.setItem('videoplayer-current-time', JSON.stringify(0));
-  console.log('create Item');
 }
 
-document.addEventListener(
-  'click',
-  _.throttle(() => {
-    player.on('play', function (timeupdate) {
-      console.log('played the video!');
-      localStorage.setItem(
-        'videoplayer-current-time',
-        JSON.stringify(timeupdate.seconds)
-      );
-    });
-  }, 1000)
+player.on('timeupdate', _.throttle(({ seconds } = currentTime) => {
+    
+ localStorage.setItem('videoplayer-current-time', JSON.stringify(seconds));
+}, 1000)
 );
 
-    
-    let currentTime = JSON.parse(
-      localStorage.getItem('videoplayer-current-time')
-    );
-    player.setCurrentTime(currentTime);
+player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
 
-   
- 
