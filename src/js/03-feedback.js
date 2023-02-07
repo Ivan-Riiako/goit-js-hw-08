@@ -19,19 +19,15 @@ const obj = {
   message: '',
 };
 
-document.addEventListener('input', _.throttle(() =>{
+document.addEventListener('input', _.throttle(onChangeInput, 500));
+
+function onChangeInput() {
   obj.email = refs.email.value;
   obj.message = refs.message.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(obj));
-}, 500));
-
-// function onChangeInput() {
-//   obj.email = refs.email.value;
-//   obj.message = refs.message.value;
-//     localStorage.setItem('feedback-form-state', JSON.stringify(obj));
-//   console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
+    localStorage.setItem('feedback-form-state', JSON.stringify(obj));
+  // console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
     
-// }
+}
 
 document.addEventListener('submit', onClickSubmit);
 function onClickSubmit(event) {
